@@ -1,6 +1,6 @@
 ﻿namespace DevelopmentChallenge.Data.Classes.Refactor.Shapes
 {
-    public class Rectangle : GeometricShape
+    public sealed class Rectangle : GeometricShape
     {
         public Rectangle(decimal height, decimal width):base(height, width)
         {

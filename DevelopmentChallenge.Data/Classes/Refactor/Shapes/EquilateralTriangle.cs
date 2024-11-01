@@ -2,7 +2,7 @@
 
 namespace DevelopmentChallenge.Data.Classes.Refactor
 {
-    public class EquilateralTriangle : GeometricShape
+    public sealed class EquilateralTriangle : GeometricShape
     {
         public EquilateralTriangle(decimal size):base(size) { }
 

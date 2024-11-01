@@ -1,6 +1,6 @@
 ﻿namespace DevelopmentChallenge.Data.Classes.Refactor
 {
-    public class Square : GeometricShape
+    public sealed class Square : GeometricShape
     {
         public Square(decimal size) : base(size) { }
         public override decimal CalculateArea() => _height * _height;

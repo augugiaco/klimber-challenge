@@ -136,7 +136,7 @@ namespace DevelopmentChallenge.Data.Tests
         [TestCase]
         public void GetReportContent_WhenTheListHasRectangles_ShouldReturnTheRectanglesDetails()
         {
-            var formas = new List<GeometricShape>
+            var shapes = new List<GeometricShape>
             {
                 new Square(5),
                 new Circle(3),
@@ -151,18 +151,18 @@ namespace DevelopmentChallenge.Data.Tests
 
             var reportGenerator = GetCreatorByLanguage(LanguageEnum.Spanish);
 
-            var resumen = reportGenerator.GetReportContent(formas);
+            var reportContent = reportGenerator.GetReportContent(shapes);
 
             Assert.That(
                 "<h1>Reporte de Formas</h1>2 Cuadrados | Area 29 | Perimetro 28 <br/>2 Círculos | Area 13,01 | Perimetro 18,06 <br/>" +
                 "3 Triángulos | Area 49,64 | Perimetro 51,6 <br/>2 Rectángulos | Area 20,1 | Perimetro 27,4 <br/>TOTAL:<br/>9 formas Perimetro 125,06 Area 111,75" ==
-                resumen);
+                reportContent);
         }
 
         [TestCase]
         public void GetReportContent_WhenTheListHasAllShapesAndItalianLanguage_ShouldReturnFullDetailsInItalian()
         {
-            var formas = new List<GeometricShape>
+            var shapes = new List<GeometricShape>
             {
                 new Square(5),
                 new Circle(3),
@@ -177,18 +177,18 @@ namespace DevelopmentChallenge.Data.Tests
 
             var reportGenerator = GetCreatorByLanguage(LanguageEnum.Italian);
 
-            var resumen = reportGenerator.GetReportContent(formas);
+            var reportContent = reportGenerator.GetReportContent(shapes);
 
             Assert.That(
                 "<h1>Rapporto sui Moduli</h1>2 Piazzas | Zona 29 | Perimetro 28 <br/>2 Cerchios | Zona 13,01 | Perimetro 18,06 <br/>" +
                 "3 Triangolos | Zona 49,64 | Perimetro 51,6 <br/>2 Rettangolos | Zona 20,1 | Perimetro 27,4 <br/>TOTAL:<br/>9 formas Perimetro 125,06 Zona 111,75" ==
-                resumen);
+                reportContent);
         }
 
         [TestCase]
         public void GetReportContent_WhenTheListHasOnlyOneShapePerTypeAndItalianLanguage_ShouldReturnFullDetailsInItalian()
         {
-            var formas = new List<GeometricShape>
+            var shapes = new List<GeometricShape>
             {
                 new Square(5),
                 new Circle(3),
@@ -198,26 +198,26 @@ namespace DevelopmentChallenge.Data.Tests
 
             var reportGenerator = GetCreatorByLanguage(LanguageEnum.Italian);
 
-            var resumen = reportGenerator.GetReportContent(formas);
+            var reportContent = reportGenerator.GetReportContent(shapes);
 
             Assert.That(
                 "<h1>Rapporto sui Moduli</h1>1 Piazza | Zona 25 | Perimetro 20 <br/>1 Cerchio | Zona 7,07 | Perimetro 9,42 <br/>" +
                 "1 Triangolo | Zona 6,93 | Perimetro 12 <br/>1 Rettangolo | Zona 12,1 | Perimetro 15,4 <br/>TOTAL:<br/>4 formas Perimetro 56,82 Zona 51,1" ==
-                resumen);
+                reportContent);
         }
 
         #region Auxiliary Methods
 
-        private IGeometricFiguresListPrinterCreator GetCreatorByLanguage(LanguageEnum language)
+        private IGeometricShapesListPrinterCreator GetCreatorByLanguage(LanguageEnum language)
         {
             switch (language)
             {
                 case LanguageEnum.Spanish:
-                    return new ConcreteGeometricReportFiguresSpanish();
+                    return new ConcreteGeometricShapesReportSpanish();
                 case LanguageEnum.English:
-                    return new ConcreteGeometricReportFiguresEnglish();
+                    return new ConcreteGeometricShapesReportEnglish();
                 case LanguageEnum.Italian:
-                    return new ConcreteGeometricReportFiguresItalian();
+                    return new ConcreteGeometricShapesReportItalian();
                 default:
                     throw new NotImplementedException();
             }
